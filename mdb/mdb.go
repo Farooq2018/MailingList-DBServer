@@ -16,23 +16,44 @@ type EmailEntry struct {
 }
 
 // Function for creating database
+//func TryCreate(db *sql.DB) {
+//	_, err := db.Exec(`
+//		CREATE TABLE emails (
+//		    id				INTEGER PRIMARY KEY ,
+//		    email 			TEXT UNIQUE ,
+//		    confirmed_at	INTEGER,
+//		    opt_out			INTEGER
+//		);
+//	`)
+//	if err != nil {
+//		if sqlError, ok := err.(sqlite3.Error); ok {
+//			//code 1 == "table already exists"
+//			if sqlError.Code != 1 {
+//				log.Fatal(sqlError)
+//			} else {
+//				log.Fatal(err)
+//			}
+//		}
+//	}
+//}
+
 func TryCreate(db *sql.DB) {
 	_, err := db.Exec(`
-		CREATE TABLE emails (
-		    id				INTEGER PRIMARY KEY ,
-		    email 			TEXT UNIQUE ,
-		    confirmed_at	INTEGER,
-		    opt_out			INTEGER
-		);
-	`)
+    		CREATE TABLE emails (
+    		    id				INTEGER PRIMARY KEY ,
+    		    email 			TEXT UNIQUE ,
+    		    confirmed_at	INTEGER,
+    		    opt_out			INTEGER
+    		);
+    	`)
 	if err != nil {
 		if sqlError, ok := err.(sqlite3.Error); ok {
 			//code 1 == "table already exists"
 			if sqlError.Code != 1 {
 				log.Fatal(sqlError)
-			} else {
-				log.Fatal(err)
 			}
+		} else {
+			log.Fatal(err)
 		}
 	}
 }
