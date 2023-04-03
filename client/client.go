@@ -102,7 +102,7 @@ func main() {
 
 	client := pb.NewMailingListServiceClient(conn)
 
-	newEmail := createEmail(client, "999@gmail.com")
+	newEmail := createEmail(client, "9999@gmail.com")
 	newEmail.ConfirmedAt = 10000
 	updateEmail(client, *newEmail)
 	deleteEmail(client, newEmail.Email)
